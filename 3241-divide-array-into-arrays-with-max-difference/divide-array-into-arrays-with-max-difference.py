@@ -1,6 +1,7 @@
 class Solution:
     def divideArray(self, nums: List[int], k: int) -> List[List[int]]:
-        if(len(nums)<3):
+        n = len(nums)
+        if(n<3 or n%3!=0):
             return []
         result = []
         nums.sort()
