@@ -31,9 +31,9 @@ class Solution:
             nonlocal miny
             if i in visited:
                 return
+            visited.add(i)
             for j in path[i]:
                 miny = miny if miny < d[(i,j)] else d[(i,j)]
-                visited.add(i)
                 dfs(visited,j)
         dfs(visited,1)
         return miny
