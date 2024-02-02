@@ -14,16 +14,30 @@ class Solution:
                 path[roads[i][0]] = [roads[i][1]]
             if roads[i][1] not in path:
                 path[roads[i][1]] = [roads[i][0]]
-        queue = [1]
+        # queue = [1]
+        # visited = set()
+        # miny = 1000001
+        # while queue:
+        #     front = queue.pop(0)
+        #     visited.add(front)
+        #     for i in path[front]:
+        #         if i not in visited:
+        #             queue.append(i)
+        #             miny = d[(front,i)] if d[(front,i)] < miny else miny
+        # return miny
         visited = set()
         miny = 1000001
-        while queue:
-            front = queue.pop(0)
-            visited.add(front)
-            for i in path[front]:
-                if i not in visited:
-                    queue.append(i)
-                    miny = d[(front,i)] if d[(front,i)] < miny else miny
+        def dfs(visited,i):
+            nonlocal miny
+            if i in visited:
+                return
+            for j in path[i]:
+                miny = miny if miny < d[(i,j)] else d[(i,j)]
+                visited.add(i)
+                dfs(visited,j)
+        dfs(visited,1)
         return miny
-                
+
+
+
             
