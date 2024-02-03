@@ -1,14 +1,14 @@
 class Solution:
     def sequentialDigits(self, low: int, high: int) -> List[int]:
-        s = "123456789"
+        dummy = [12,123,1234,12345,123456,1234567,12345678,123456789]
+        n,k = len(dummy),11
         res = []
-
-        for i in range(len(s)):
-            for j in range(i + 1, len(s)):
-                num = int(s[i:j+1])
-
-                if num > high: break
-                if low <= num:
-                    res.append(num)
+        for i in range(n):
+            news = dummy[i]
+            for j in range(n-i):
+                if(news >= low and news <= high):
+                    res.append(news)
+                news += k
+            k = k * 10 + 1
+        return res
         
-        return sorted(res)
