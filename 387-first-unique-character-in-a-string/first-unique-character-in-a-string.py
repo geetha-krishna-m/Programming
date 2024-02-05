@@ -1,18 +1,11 @@
 class Solution:
     def firstUniqChar(self, s: str) -> int:
         d = dict()
-        v = set()
         n = len(s)
-        for i in range(n):
-            if s[i] not in d:
-                d[s[i]] = i
-            else:
-                if d[s[i]] not in v:
-                    v.add(d[s[i]])
-                v.add(i)
-        for i in range(n):
-            if i not in v:
-                return i
+        for i in s:
+            d[i] = d.get(i,0) + 1
+        for j,i in enumerate(s):
+            if d[i] == 1:
+                return j
         return -1
-                
-                
+        
