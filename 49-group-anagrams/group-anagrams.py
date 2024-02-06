@@ -10,4 +10,4 @@ class Solution:
                 d[ans].append(i)
             else:
                 d[ans] = [i]
-        return list(d.values())   
+        return d.values()   
