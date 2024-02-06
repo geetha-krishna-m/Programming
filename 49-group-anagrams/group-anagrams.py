@@ -1,21 +1,27 @@
+from typing import List
+from collections import defaultdict
+
 class Solution:
+    def getSignature(self, s: str) -> str:
+        count = [0] * 26
+        for c in s:
+            count[ord(c) - ord('a')] += 1
+
+        result = []
+        for i in range(26):
+            if count[i] != 0:
+                result.extend([chr(i + ord('a')), str(count[i])])
+
+        return ''.join(result)
+
     def groupAnagrams(self, strs: List[str]) -> List[List[str]]:
-        # d = dict()
-        # for i in strs:
-        #     res = []
-        #     for j in i:
-        #         res.append(j)
-        #     ans = "".join(sorted(res))
-        #     if ans in d:
-        #         d[ans].append(i)
-        #     else:
-        #         d[ans] = [i]
-        # return list(d.values())
-        d = dict()
-        for i in strs:
-            res = str(sorted(i))
-            if res not in d:
-                d[res] = [i]
-            else:
-                d[res].append(i)
-        return d.values()
+        result = []
+        groups = defaultdict(list)
+
+        for s in strs:
+            groups[self.getSignature(s)].append(s)
+
+        result.extend(groups.values())
+
+        return result
+
