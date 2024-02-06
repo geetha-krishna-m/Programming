@@ -18,4 +18,4 @@ class Solution:
                 d[res] = [i]
             else:
                 d[res].append(i)
-        return list(d.values())
+        return d.values()
