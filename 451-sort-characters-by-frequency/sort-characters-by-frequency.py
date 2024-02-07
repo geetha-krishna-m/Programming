@@ -6,6 +6,5 @@ class Solution:
         keys_ = sorted(d.keys(),key = lambda x:d[x],reverse = True)
         s = ""
         for i in keys_:
-            s += i*d[i]
+            s = s + i*d[i]
         return s
-        
