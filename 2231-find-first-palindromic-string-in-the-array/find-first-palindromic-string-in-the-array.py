@@ -1,10 +1,14 @@
-f = open('user.out', 'w')
-for test in map(loads, stdin):
-    flag = True
-    for word in test:
-        if word == word[::-1]:
-            flag = False
-            print('"' + word + '"', file=f)
-            break
-    if flag: print('""', file=f)
-exit(0)
+class Solution:
+    def firstPalindrome(self, words: List[str]) -> str:
+        for i in words:
+            j,k = 0,len(i)-1
+            while(j<k):
+                if i[j] != i[k]:
+                    break
+                j += 1
+                k -= 1
+            if(j>=k):
+                return i
+        return ""
+            
+
