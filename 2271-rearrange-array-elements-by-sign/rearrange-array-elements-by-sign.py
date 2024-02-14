@@ -7,7 +7,7 @@ class Solution:
             if(nums[i]>0):
                 num[j] = nums[i]
                 j += 2
-            if(nums[i]<0):
+            else:
                 num[k] = nums[i]
                 k += 2
         return num
