@@ -3,9 +3,10 @@ class Solution:
         d = collections.Counter(arr)
         x = sorted(d,key = lambda x:d[x])
         for i in x:
-            while k!=0 and d[i]!=0:
-                d[i] -= 1
-                k -= 1
-            if k==0:
-                break    
-        return sum(1 for i in d.values() if i!=0)
+            if k>=d[i]:
+                k = k - d[i]
+                if k>=0:
+                    del d[i] 
+            if k<=0:
+                break       
+        return len(d)
