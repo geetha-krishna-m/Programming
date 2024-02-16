@@ -2,10 +2,10 @@ class Solution:
     def findLeastNumOfUniqueInts(self, arr: List[int], k: int) -> int:
         d = collections.Counter(arr)
         x = sorted(d,key = lambda x:d[x])
-        for i in x:
+        x_len =len(x)
+        for j,i in enumerate(x):
             if k>=d[i]:
                 k = k - d[i]
-                del d[i]
-            if k<=0:
-                break     
-        return len(d)
+            else:
+                return x_len - (j)
+        return 0
