@@ -5,8 +5,7 @@ class Solution:
         for i in x:
             if k>=d[i]:
                 k = k - d[i]
-                if k>=0:
-                    del d[i] 
+                del d[i]
             if k<=0:
-                break       
+                break     
         return len(d)
