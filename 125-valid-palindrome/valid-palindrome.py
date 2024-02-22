@@ -1,11 +1,10 @@
 class Solution:
     def isPalindrome(self, s: str) -> bool:
-        k = ""
-        for i in s.lower():
-            if (i>=chr(97) and i<=chr(122)) or (i>=chr(48) and i<=chr(57)):
-                k += i
-        if(k==k[::-1]):
-            return True
-        return False
+        s = re.sub(r'[^a-zA-Z0-9]','',s).lower()
+        n = len(s)
+        for i in range(n):
+            if(s[i]!=s[n-i-1]):
+                return False
+        return True
                 
         
