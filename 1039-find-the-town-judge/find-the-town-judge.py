@@ -1,11 +1,10 @@
 class Solution:
-    def findJudge(self, N: int, trust: List[List[int]]) -> int:
-        in_degree = [0] * (N + 1)
-        out_degree = [0] * (N + 1)
-        for a in trust:
-            out_degree[a[0]] += 1
-            in_degree[a[1]] += 1
-        for i in range(1, N + 1):
-            if in_degree[i] == N - 1 and out_degree[i] == 0:
-                return i
+    def findJudge(self, n: int, trust: List[List[int]]) -> int:
+        res = [0 for i in range(n)]
+        for i in trust:
+            res[i[1]-1] += 1
+            res[i[0]-1] -= 1
+        for i in range(n):
+            if(res[i]==(n-1)):
+                return i+1
         return -1
