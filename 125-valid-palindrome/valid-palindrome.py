@@ -1,5 +1,4 @@
 class Solution:
-    @cache
     def isPalindrome(self, s: str) -> bool:
         s = re.sub(r'[^a-zA-Z0-9]','',s).lower()
         n = len(s)
