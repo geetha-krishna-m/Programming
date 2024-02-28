@@ -6,17 +6,18 @@
 #         self.right = right
 class Solution:
     def findBottomLeftValue(self, root: Optional[TreeNode]) -> int:
-        d = dict()
-        cnt = 0
+        finalRes = root.val
+        cnt,cCnt = 0,0
         def traverse(root):
-            nonlocal cnt
+            nonlocal cnt,cCnt,finalRes
             if root == None:
                 return
             cnt = cnt + 1
             traverse(root.left)
-            if cnt not in d:
-                d[cnt] = root.val
+            if cnt > cCnt:
+                finalRes = root.val
+                cCnt = cnt
             traverse(root.right)
             cnt -= 1
         traverse(root)
-        return d[max(d)]
+        return finalRes
