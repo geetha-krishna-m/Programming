@@ -1,13 +1,12 @@
 class Solution:
     def minimumLength(self, s: str) -> int:
-        l, r = 0, len(s) - 1
-        while l < r and s[l] == s[r]:
-            char = s[l]
-            l += 1
-            r -= 1
-            while l <= r and s[l] == char:
-                l += 1
-            while l <= r and s[r] == char:
-                r -= 1
-        
-        return r - l + 1
+        i, j = 0, len(s) - 1
+        while(i<j and s[i]==s[j]):
+            char = s[i]
+            i += 1
+            j -= 1
+            while(i<=j and s[i]==char):
+                i += 1
+            while(j>=i and s[j]==char):
+                j -= 1
+        return j-i+1
