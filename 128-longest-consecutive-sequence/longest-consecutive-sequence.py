@@ -5,9 +5,7 @@ class Solution:
         for i in uniqueNums:
             if i+1 not in uniqueNums:
                 x = i
-                cnt = 1
                 while x-1 in uniqueNums:
-                    cnt += 1
                     x -= 1
-                longest = max(longest,cnt)
+                longest = max(longest,i-x+1)
         return longest
