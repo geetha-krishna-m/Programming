@@ -1,11 +1,13 @@
 class Solution:
     def pivotInteger(self, n: int) -> int:
-        sums = (n*(n+1))//2
-        cumi = 0
+        prefixSum = []
+        sums = 0
+        for i in range(n,0,-1):
+            sums += i
+            prefixSum.append(sums)
+        sums = 0
         for i in range(1,n+1):
-            cumi += i
-            if(cumi == sums-cumi+i):
+            sums += i
+            if(sums == prefixSum[n-i]):
                 return i
-        return -1
-            
-        
+        return -1    
