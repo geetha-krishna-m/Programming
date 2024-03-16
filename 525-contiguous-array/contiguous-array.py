@@ -1,27 +1,24 @@
 class Solution:
     def findMaxLength(self, nums: List[int]) -> int:
-        counter = 0
+
+        sum_index = {0:-1}
+        curr_sum = 0
         ans = 0
-        hashmap = {}
-        
+
         for i in range(len(nums)):
-            
-            if nums[i] == 1:
-                counter += 1
+            if nums[i] == 0:
+                curr_sum += -1
+            elif nums[i] == 1:
+                curr_sum += 1
+
+            if curr_sum in sum_index:
+                max_len = (i - sum_index[curr_sum])
+                if max_len > ans:
+                    ans = max_len
             else:
-                counter -= 1
-                
-            if counter == 0:
-                size = i + 1
-                ans = size
-                
-            elif counter in hashmap:
-                size = i - hashmap[counter]
-                if size > ans:
-                    ans = size
-                
-            else:
-                hashmap[counter] = i
-            
+                sum_index[curr_sum] = i
         return ans
+
+
+
         
