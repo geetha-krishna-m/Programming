@@ -18,7 +18,6 @@ class Solution:
                     d[nums[start]] -= 1
                     start += 1
                 maxy = max(maxy,end-start+1)
-                # start = start + 1
             maxy = max(maxy,end-start+1)
             end = end + 1
         return maxy      
