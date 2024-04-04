@@ -4,10 +4,10 @@ class Solution {
        int cnt =0,maxy = 0;
        for(Character c:s.toCharArray()){
         if(c == '('){
-            cnt += 1;
+            cnt++;
         }
         if(c == ')'){
-            cnt -= 1;
+            cnt--;
         }
         maxy = maxy > cnt ? maxy : cnt;
        }
