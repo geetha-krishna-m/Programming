@@ -21,4 +21,3 @@ class Solution:
                 if(cnt == 0):
                     break
             return "".join(l)
-
