@@ -1,5 +1,5 @@
-class Solution:
-    def minRemoveToMakeValid(self, s: str) -> str:
+# class Solution:
+#     def minRemoveToMakeValid(self, s: str) -> str:
         # l = []
         # cnt = 0
         # for i in range(len(s)):
@@ -21,7 +21,7 @@ class Solution:
         #         if(cnt == 0):
         #             break
         #     return "".join(l)
-        """
+"""
 Given a string s that contains parentheses, remove the minimum number
 of parens to make it valid, where each paren has a matching pair.
 
@@ -36,22 +36,47 @@ Test case:
     
 """
 
+# class Solution:
+#     def minRemoveToMakeValid(self, s: str) -> str:
+#         stack: List[int] = []
+#         result: List[str] = []
+#         for c in s:
+#             if c == '(':
+#                 stack.append(len(result))
+#                 result.append(c)
+#             elif c == ')':
+#                 if stack:
+#                     stack.pop()
+#                     result.append(c)
+#             else:
+#                 result.append(c)
+        
+#         for i in stack:
+#             result[i] = ''
+        
+#         return ''.join(result)
 class Solution:
     def minRemoveToMakeValid(self, s: str) -> str:
-        stack: List[int] = []
-        result: List[str] = []
-        for c in s:
-            if c == '(':
-                stack.append(len(result))
-                result.append(c)
-            elif c == ')':
-                if stack:
-                    stack.pop()
-                    result.append(c)
-            else:
-                result.append(c)
+        stack = 0
+        ret = []
+        for index, c in enumerate(s):
+            if c == ')' and stack != 0:
+                ret.append(c)
+                stack -= 1
+            elif  c == '(':
+                ret.append(c)
+                stack+=1
+            elif c!= '(' and c!= ')':
+                ret.append(c)
         
-        for i in stack:
-            result[i] = ''
-        
-        return ''.join(result)
+        end = len(ret) - 1
+        print(end)
+        print(ret)
+
+        while stack > 0:
+            if ret[end] == '(':
+                ret.pop(end)
+                stack-=1
+            end -= 1
+
+        return "".join(ret)
