@@ -1,8 +1,6 @@
 class Solution:
     def minOperationsToMakeMedianK(self, nums: List[int], k: int) -> int:
         nums.sort()
-        if(len(nums)<2):
-            return abs(max(nums)-k)
         mid = len(nums)//2
         if(nums[mid] == k):
             return 0
