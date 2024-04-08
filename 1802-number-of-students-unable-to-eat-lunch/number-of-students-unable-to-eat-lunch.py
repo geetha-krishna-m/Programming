@@ -1,9 +1,17 @@
 class Solution:
-    def countStudents(self, st: List[int], sa: List[int]) -> int:
-        ct = Counter(st)
-        for s in sa:
-            if ct[s] > 0: 
-                ct[s] -= 1
+    def countStudents(self, students: List[int], sandwiches: List[int]) -> int:
+        total = len(students)
+        rotations,eat = 0,0
+        while(len(sandwiches)):
+            if(rotations == len(students)):
+                break
+            if(sandwiches[0] == students[0]):
+                sandwiches.pop(0)
+                students.pop(0)
+                eat += 1
+                rotations = 0    
             else:
-                return ct.total()
-        return 0
+                students.append(students.pop(0))
+                rotations += 1
+        return total-eat
+        
