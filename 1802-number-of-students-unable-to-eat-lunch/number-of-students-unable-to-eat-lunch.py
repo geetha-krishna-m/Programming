@@ -13,5 +13,4 @@ class Solution:
             else:
                 students.append(students.pop(0))
                 rotations += 1
-        return total-eat
-        
+        return len(sandwiches)   
