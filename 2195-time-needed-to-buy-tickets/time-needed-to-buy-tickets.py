@@ -7,5 +7,4 @@ class Solution:
                 tickets[i%(n)] -= 1
                 time += 1
             i += 1     
-        return time
-        
+        return time 
