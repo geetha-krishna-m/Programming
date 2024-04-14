@@ -9,14 +9,11 @@ class Solution:
     def sumOfLeftLeaves(self, root: Optional[TreeNode]) -> int:
         if root == None:
             return 0
-        sumy = 0
-        def sums(root,prev):
-            nonlocal sumy
+        def sums(root,prev,sumy):
             if root == None:
-                return 
+                return sumy
             if root.left == None and root.right == None and prev.left == root:
                 sumy += root.val
-            sums(root.left,root)
-            sums(root.right,root)
-        sums(root,root)
-        return sumy
+                return sumy
+            return sums(root.left,root,sumy) + sums(root.right,root,sumy)
+        return sums(root,root,0)
