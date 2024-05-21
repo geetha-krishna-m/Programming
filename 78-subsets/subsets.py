@@ -1,12 +1,11 @@
-class Solution(object):
-    def subsets(self, nums):
-      result = [[]]  # start with the empty set
-
-      for num in nums:
-          size = len(result)
-          for i in range(size):
-              new_subset = list(result[i])
-              new_subset.append(num)
-              result.append(new_subset)
-
-      return result
+class Solution:
+    def subsets(self, nums: List[int]) -> List[List[int]]:
+        result = [[]]
+        for i in nums:
+            size = len(result)
+            for j in range(size):
+                subset = list(result[j])
+                subset.append(i)
+                result.append(subset)
+        return result
+        
