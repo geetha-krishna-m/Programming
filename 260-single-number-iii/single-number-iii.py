@@ -1,17 +1,13 @@
 class Solution:
     def singleNumber(self, nums: List[int]) -> List[int]:
-        d=dict()
+        xor = 0
         for i in nums:
-            if i in d:
-                d[i]+=1
-            else:
-                d[i]=1
-        res=[None,None]
-        idx=0
-        for i in d:
-            if idx==2:
-                break
-            if d[i]==1:
-                res[idx]=i
-                idx+=1
-        return res
+            xor ^= i
+        a,b = 0,0
+        for i in nums:
+            if i & (xor&-xor):
+                a ^= i
+                continue
+            b ^= i
+        return [a,b]
+        
