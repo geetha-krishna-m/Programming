@@ -8,8 +8,8 @@ class Solution:
         s = sorted(c)
         cnt, prev = c[s[0]],0
         for i in s:
-            # if c[i]>groupSize:
-            #     return False
+            if(c[i]> len(hand) //groupSize):
+                return False
             if c[i]>0:
                 for k in range(1,groupSize):
                     if(i+k not in c):
