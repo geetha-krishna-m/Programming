@@ -6,8 +6,6 @@ class Solution:
         for i in nums:
             prefixSum += i
             mod = prefixSum % k
-            if mod<0:
-                mod += k
             if mod in prefixMap:
                 count += prefixMap[mod]
                 prefixMap[mod] += 1
