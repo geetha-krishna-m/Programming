@@ -8,6 +8,7 @@ class Solution:
                 miss += nums[i]
                 i += 1
             else:
+                print(miss)
                 miss += miss
                 result += 1
         return result
