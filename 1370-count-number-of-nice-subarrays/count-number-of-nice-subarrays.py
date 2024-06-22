@@ -1,20 +1,15 @@
-import bisect
 class Solution:
+    def check(self,nums,k):
+        s = 0
+        ans = 0
+        j = 0
+        for i in range(len(nums)):
+            s += (nums[i]%2)
+            while(s>k):
+                s -= (nums[j]%2)
+                j += 1
+            ans += (i-j+1)
+        return ans
     def numberOfSubarrays(self, nums: List[int], k: int) -> int:
-        res = [0]*len(nums)
-        for i in range(len(nums)):
-            if i==0:
-                res[i] = (1 if nums[i]%2!=0 else 0)
-            else:
-                res[i] = res[i-1] + (1 if nums[i]%2!=0 else 0)
-        count,req_k = 0,k
-        for i in range(len(nums)):
-            lind = bisect.bisect_left(res,req_k)
-            rind = bisect.bisect_right(res,req_k)
-            diff = rind - lind
-            if(diff<=0):
-                break
-            count += rind-lind
-            if nums[i]%2!=0:
-                req_k += 1
-        return count
+        return self.check(nums,k) - self.check(nums,k-1)
+        
