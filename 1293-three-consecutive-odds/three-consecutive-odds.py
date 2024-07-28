@@ -3,14 +3,7 @@ class Solution:
         n = len(arr)
         if(n<3):
             return False
-        cnt = 0
-        for i in range(len(arr)):
-            if(arr[i] & 1 == 1):
-                cnt = cnt + 1
-            else:
-                cnt = 0
-            if(cnt == 3):
+        for i in range(2,len(arr)):
+            if((arr[i] & arr[i-1] & arr[i-2])%2 == 1):
                 return True
         return False
-            
-        
