@@ -1,8 +1,8 @@
 class Solution {
     public int minimumPushes(String word) {
         int arr[] = new int[26];
-        for(Character c:word.toCharArray()){
-            arr[c-'a']++;
+        for(int i=0;i<word.length();i++){
+            arr[word.charAt(i)-'a']++;
         }
         int cost = 1,totalCost = 0,rounds=0,maximum = -9999,index = -1;
         while(maximum != 0){
