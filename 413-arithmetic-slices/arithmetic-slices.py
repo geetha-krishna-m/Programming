@@ -3,19 +3,20 @@ class Solution:
         n = len(nums)
         if(n<3):
             return 0
-        res,i = 0,0
-        while(i<n-2):
-            j = i + 2
-            while(j<n):
-                if(nums[j-1] - nums[j-2] == nums[j] - nums[j-1]):
-                    j = j + 1
-                else:
-                    break
-            diff = j - i
-            print(i,j,diff)
-            if(diff>=3):
-                res += (diff*(diff+1))//2 + 1 - (2*diff)
-            i = j-1
+        res,r = 0,1
+        start = 0
+        diff = nums[1] - nums[0]
+        while(r<n):
+            if(nums[r]-nums[r-1] == diff):
+                r += 1
+            else:
+                if(r-start>=3):
+                    res += ((r-start)*(r-start+1))//2 - (2*(r-start)) + 1
+                start = r-1
+                diff = nums[r] - nums[r-1]
+        if(r-start>=3):
+            res += ((r-start)*(r-start+1))//2 - (2*(r-start)) + 1
         return res
+                
                 
         
