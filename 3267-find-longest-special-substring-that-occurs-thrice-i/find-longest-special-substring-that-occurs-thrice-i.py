@@ -1,23 +1,30 @@
-from collections import Counter
 class Solution:
     def maximumLength(self, s: str) -> int:
-        subarrays = []
+        n = len(s)
+        l, r = 1, n
 
-        for i in range(len(s)):
-            index = i
-            while index < len(s) and s[index] == s[i]:
-                subarrays.append(s[i:index+1])
-                index += 1
-
-        counter = Counter(subarrays)
-        max_len = 0
-
-        for j, n in counter.items():
-            if n >= 3:
-                if len(j) > max_len:
-                    max_len = len(j)
-
-        if max_len == 0:
+        if not self.helper(s, n, l):
             return -1
-            
-        return max_len
+
+        while l + 1 < r:
+            mid = (l + r) // 2
+            if self.helper(s, n, mid):
+                l = mid
+            else:
+                r = mid
+
+        return l
+
+    def helper(self, s: str, n: int, x: int) -> bool:
+        cnt = [0] * 26
+        p = 0
+
+        for i in range(n):
+            while s[p] != s[i]:
+                p += 1
+            if i - p + 1 >= x:
+                cnt[ord(s[i]) - ord('a')] += 1
+            if cnt[ord(s[i]) - ord('a')] > 2:
+                return True
+
+        return False
