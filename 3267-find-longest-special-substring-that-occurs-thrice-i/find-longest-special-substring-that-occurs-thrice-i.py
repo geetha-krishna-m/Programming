@@ -1,14 +1,15 @@
 from collections import Counter
 class Solution:
     def maximumLength(self, s: str) -> int:
-        counter = defaultdict(int)
-        n = len(s)
-        for i in range(n):
-            ind,temp = i,""
-            while(ind<n and s[ind] == s[i]):
-                temp = temp + s[ind]
-                counter[temp] = counter.get(temp,0) + 1
-                ind = ind + 1
+        subarrays = []
+
+        for i in range(len(s)):
+            index = i
+            while index < len(s) and s[index] == s[i]:
+                subarrays.append(s[i:index+1])
+                index += 1
+
+        counter = Counter(subarrays)
         max_len = 0
 
         for j, n in counter.items():
