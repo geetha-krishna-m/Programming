@@ -2,17 +2,13 @@ class Solution:
     def maximumBeauty(self, nums: List[int], k: int) -> int:
         nums.sort()
         n = len(nums)
-        ans = 0
-        def binary_right(nums,val):
-            left,right = 0, n
-            while(left<right):
-                mid = left + (right-left)//2
-                if(nums[mid]<=val):
-                    left = mid + 1
-                else:
-                    right = mid
-            return left
+        maxy = max(nums) + 2*k
+        ans = 1
+        prefix = [0]*(maxy+2)
         for i in range(n):
-            ind = binary_right(nums,nums[i]+2*k)
-            ans = max(ans,ind-i)
+            prefix[max(nums[i]-k,0)] += 1
+            prefix[min(nums[i]+k,maxy)+1] -= 1
+        for i in range(1,maxy+2):
+            prefix[i] += prefix[i-1] 
+            ans = max(ans,prefix[i])
         return ans
