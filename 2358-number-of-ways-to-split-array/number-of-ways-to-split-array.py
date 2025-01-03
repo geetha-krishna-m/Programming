@@ -9,7 +9,6 @@ class Solution:
         for i in range(1,n):
             sum_l = prefix[i-1]
             sum_r = prefix[n-1] - prefix[i-1]
-            print(sum_l,sum_r)
             if(sum_l>=sum_r):
                 cnt += 1
         return cnt
