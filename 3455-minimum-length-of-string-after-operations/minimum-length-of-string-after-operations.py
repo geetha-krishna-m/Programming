@@ -5,10 +5,10 @@ class Solution:
         for i in range(n):
             c[ord(s[i])-97] += 1
         for i in range(26):
-            if(c[i]>2 and c[i]%2):
-                cnt += c[i]-1
-            if(c[i]>2 and not c[i]%2):
-                cnt += c[i]-2
+            if(c[i] and c[i]%2):
+                cnt += (c[i]-1)
+            if(c[i] and not c[i]%2):
+                cnt += (c[i]-2)
         return n-cnt
 
         
