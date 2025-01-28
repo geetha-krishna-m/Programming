@@ -1,22 +1,23 @@
 class Solution:
     def numIslands(self, grid: List[List[str]]) -> int:
-        if not grid:
-            return 0
-        
-        def dfs(i, j):
-            if i < 0 or i >= len(grid) or j < 0 or j >= len(grid[0]) or grid[i][j] != '1':
+        m,n = len(grid),len(grid[0])
+        visited = set()
+        def checkBoundaries(i,j):
+            if(i>=m or j>=n or i<0 or j<0):
+                return True
+            return False
+        def traverseIsland(i,j):
+            if(checkBoundaries(i,j) or (i,j) in visited or grid[i][j] == "0"):
                 return
-            grid[i][j] = '0'  # mark as visited
-            dfs(i+1, j)
-            dfs(i-1, j)
-            dfs(i, j+1)
-            dfs(i, j-1)
-        
-        num_islands = 0
-        for i in range(len(grid)):
-            for j in range(len(grid[0])):
-                if grid[i][j] == '1':
-                    num_islands += 1
-                    dfs(i, j)
-        
-        return num_islands
+            visited.add((i,j))
+            traverseIsland(i+1,j)
+            traverseIsland(i,j+1)
+            traverseIsland(i-1,j)
+            traverseIsland(i,j-1)
+        islandCount = 0
+        for i in range(m):
+            for j in range(n):
+                if(grid[i][j] == "1" and (i,j) not in visited):
+                    islandCount += 1
+                    traverseIsland(i,j)
+        return islandCount
